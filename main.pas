@@ -1,6 +1,8 @@
+// konstanta
 const
-	coKapasitasMaksimum = 100;
-	
+    coKapasitasMaksimum = 100;
+    
+// tipe baru
 type
     Baju = record
         sNamaBaju               : string;
@@ -72,19 +74,36 @@ var
     eEkspedisiPengiriman    : EkspedisiPengiriman;
     eKeranjangBelanja       : KeranjangBelanja;
     eTransaksiBelanja       : TransaksiBelanja;
+    
+    fStokBaju               : Text;
+    fEkpedisiPengiriman     : Text;
+    fKeranjangBelanja       : Text;
+    fTransaksiBelanja       : Text;
 
 
 
 // Rancangan File Eksternal
-// + fStoeKBaju.dat
-// + fEkpedisiPengiriman.dat
-// + fKeranjangBelanja.dat
-// + fTransaksiBelanja
+//
+// + fStokBaju.txt
+// contoh isi berkas: 
+// Blouse Etnik Sasmira | Blouse | Perempuan | Biru | 0.1 | Spandex | 3000 | 10 | 15 | 20 | 10 | 100 | 10
+//
+// + fEkpedisiPengiriman.txt
+// contoh isi berkas: 
+// JNE | YES | Surabaya | 9000 | 1
+//
+// + fKeranjangBelanja.txt
+// contoh isi berkas: 
+// Blouse Etnik Sasmira | Biru | 0.1 | Spandex | 3000 | 0 | 1 | 0 | 0
+//
+// + fTransaksiBelanja.txt
+// contoh isi berkas: 
+// Blouse Etnik Sasmira | Biru | 0.1 | Spandex | 3000 | 0 | 1 | 0 | 0 | JNE | YES | Surabaya | 9000 | 1 | 1/4/2015
 
 
 //----------------------------------------------
 // F1
-// Membaca dan mengolah isi berkas semua file *.dat kemudian menyimpannya
+// Membaca dan mengolah isi berkas semua file *.txt kemudian menyimpannya
 // ke dalam enumerasi eSB, eEP, eKB, eTB
 {
   Contoh i/o
@@ -93,19 +112,265 @@ var
   I.S. : 
   F.S. :
 }
-procedure load(var eSB : StokBaju;
-               var eEP : EkspedisiPengiriman;
-               var eKB : KeranjangBelanja;
-               var eTB : TransaksiBelanja);
-// Algoritma
+
+
+procedure sisipkanSB(sData : string; var eSB : StokBaju; iIndex : integer; iPetunjuk : integer);
+var
+    rData : real;
+    iData : integer;
+    iErr  : integer;
 begin
-{
-
-    tulis kode disini ...
-
-}
+    Val(sData, rData, iErr);
+    Val(sData, iData, iErr);
+    case iPetunjuk of
+         1 : eSB[iIndex].sNamaBaju := sData;
+         2 : eSB[iIndex].sKategoriBaju := sData;
+         3 : eSB[iIndex].sGenderPemakai := sData;
+         4 : eSB[iIndex].sWarnaBaju := sData;
+         5 : eSB[iIndex].rBeratPerBajuKg := rData;
+         6 : eSB[iIndex].sBahanBaju := sData;
+         7 : eSB[iIndex].iHarga := iData;
+         8 : eSB[iIndex].iKetersediaanUkuranS := iData;
+         9 : eSB[iIndex].iKetersediaanUkuranM := iData;
+        10 : eSB[iIndex].iKetersediaanUkuranL := iData;
+        11 : eSB[iIndex].iKetersediaanUkuranXL := iData;
+        12 : eSB[iIndex].iJumlahPembelian := iData;
+        13 : eSB[iIndex].iGrosirDiskon := iData;
+    end;
 end;
 
+
+
+procedure sisipkanEP(sData : string; var eEP : EkspedisiPengiriman; iIndex : integer; iPetunjuk : integer);
+var
+    rData : real;
+    iData : integer;
+    iErr  : integer;
+begin
+    Val(sData, rData, iErr);
+    Val(sData, iData, iErr);
+    case iPetunjuk of
+         1 : eEP[iIndex].sNamaEkspedisi := sData;
+         2 : eEP[iIndex].sJenisLayananPengiriman := sData;
+         3 : eEP[iIndex].sNamaKota := sData;
+         4 : eEP[iIndex].iBiayaKirimPerKg := iData;
+         5 : eEP[iIndex].iLamaPengiriman := iData;
+    end;
+end;
+
+
+
+procedure sisipkanKB(sData : string; var eKB : KeranjangBelanja; iIndex : integer; iPetunjuk : integer);
+var
+    rData : real;
+    iData : integer;
+    iErr  : integer;
+begin
+    Val(sData, rData, iErr);
+    Val(sData, iData, iErr);
+    case iPetunjuk of
+         1 : eKB[iIndex].sNamaBaju := sData;
+         2 : eKB[iIndex].sWarnaBaju := sData;
+         3 : eKB[iIndex].rBeratPerBajuKg := rData;
+         4 : eKB[iIndex].sBahanBaju := sData;
+         5 : eKB[iIndex].iHarga := iData;
+         6 : eKB[iIndex].iJumlahBeliS := iData;
+         7 : eKB[iIndex].iJumlahBeliM := iData;
+         8 : eKB[iIndex].iJumlahBeliL := iData;
+         9 : eKB[iIndex].iJumlahBeliXL := iData;
+    end;
+end;
+
+
+
+procedure sisipkanTB(sData : string; var eTB : TransaksiBelanja; iIndex : integer; iPetunjuk : integer);
+var
+    rData : real;
+    iData : integer;
+    iErr  : integer;
+begin
+    Val(sData, rData, iErr);
+    Val(sData, iData, iErr);
+    case iPetunjuk of
+         1 : eTB[iIndex].sNamaBaju := sData;
+         2 : eTB[iIndex].sWarnaBaju := sData;
+         3 : eTB[iIndex].rBeratPerBajuKg := rData;
+         4 : eTB[iIndex].sBahanBaju := sData;
+         5 : eTB[iIndex].iHarga := iData;
+         6 : eTB[iIndex].iJumlahBeliS := iData;
+         7 : eTB[iIndex].iJumlahBeliM := iData;
+         8 : eTB[iIndex].iJumlahBeliL := iData;
+         9 : eTB[iIndex].iJumlahBeliXL := iData;
+        10 : eTB[iIndex].sNamaEkspedisi := sData;
+        11 : eTB[iIndex].sJenisLayananPengiriman := sData;
+        12 : eTB[iIndex].sNamaKotaTujuan := sData;
+        13 : eTB[iIndex].iBiayaKirimPerKg := iData;
+        14 : eTB[iIndex].iLamaPengiriman := iData;
+        15 : eTB[iIndex].sTanggalKirim := sData;
+    end;
+end;
+
+
+
+function bacaStokBaju(sNamaFile : string) : StokBaju;
+var
+    i : integer;
+    iPanjangS : integer;
+    iAwal, iIndex, iData : integer;
+    tBerkas : Text;
+    sSementara : string;
+    eSB : StokBaju;
+begin
+    Assign(tBerkas, sNamaFile);
+    reset(tBerkas);
+    while NOT(EOF(tBerkas)) do
+    begin
+        readln(tBerkas, sSementara);
+        sSementara := concat(sSementara, ' |');
+        iPanjangS := length(sSementara);
+        iAwal := 0;
+        iIndex := 1;
+        iData := 1;
+        for i := 1 to iPanjangS do
+        begin
+            if (sSementara[i] = '|') then
+            begin
+                sisipkanSB(copy(sSementara, iAwal + 1, i - iAwal - 2), eSB, iIndex, iData);
+                iAwal := i + 1;
+                iData := iData + 1;
+            end;
+        end;
+        iIndex := iIndex + 1;
+    end;
+    close(tBerkas);
+    bacaStokBaju := eSB;
+end;
+
+
+
+function bacaEkspedisiPengiriman(sNamaFile : string) : EkspedisiPengiriman;
+var
+    i : integer;
+    iPanjangS : integer;
+    iAwal, iIndex, iData : integer;
+    tBerkas : Text;
+    sSementara : string;
+    eEP: EkspedisiPengiriman;
+begin
+    Assign(tBerkas, sNamaFile);
+    reset(tBerkas);
+    while NOT(EOF(tBerkas)) do
+    begin
+        readln(tBerkas, sSementara);
+        sSementara := concat(sSementara, ' |');
+        iPanjangS := length(sSementara);
+        iAwal := 0;
+        iIndex := 1;
+        iData := 1;
+        for i := 1 to iPanjangS do
+        begin
+            if (sSementara[i] = '|') then
+            begin
+                sisipkanEP(copy(sSementara, iAwal + 1, i - iAwal - 2), eEP, iIndex, iData);
+                iAwal := i + 1;
+                iData := iData + 1;
+            end;
+        end;
+        iIndex := iIndex + 1;
+    end;
+    close(tBerkas);
+    bacaEkspedisiPengiriman := eEP;
+end;
+
+
+
+function bacaKeranjangBelanja(sNamaFile : string) : KeranjangBelanja;
+var
+    i : integer;
+    iPanjangS : integer;
+    iAwal, iIndex, iData : integer;
+    tBerkas : Text;
+    sSementara : string;
+    eKB : KeranjangBelanja;
+begin
+    Assign(tBerkas, sNamaFile);
+    reset(tBerkas);
+    while NOT(EOF(tBerkas)) do
+    begin
+        readln(tBerkas, sSementara);
+        sSementara := concat(sSementara, ' |');
+        iPanjangS := length(sSementara);
+        iAwal := 0;
+        iIndex := 1;
+        iData := 1;
+        for i := 1 to iPanjangS do
+        begin
+            if (sSementara[i] = '|') then
+            begin
+                sisipkanKB(copy(sSementara, iAwal + 1, i - iAwal - 2), eKB, iIndex, iData);
+                iAwal := i + 1;
+                iData := iData + 1;
+            end;
+        end;
+        iIndex := iIndex + 1;
+    end;
+    close(tBerkas);
+    bacaKeranjangBelanja := eKB;
+end;
+
+
+
+function bacaTransaksiBelanja(sNamaFile : string) : TransaksiBelanja;
+var
+    i : integer;
+    iPanjangS : integer;
+    iAwal, iIndex, iData : integer;
+    tBerkas : Text;
+    sSementara : string;
+    eTB : TransaksiBelanja;
+begin
+    Assign(tBerkas, sNamaFile);
+    reset(tBerkas);
+    while NOT(EOF(tBerkas)) do
+    begin
+        readln(tBerkas, sSementara);
+        sSementara := concat(sSementara, ' |');
+        iPanjangS := length(sSementara);
+        iAwal := 0;
+        iIndex := 1;
+        iData := 1;
+        for i := 1 to iPanjangS do
+        begin
+            if (sSementara[i] = '|') then
+            begin
+                sisipkanTB(copy(sSementara, iAwal + 1, i - iAwal - 2), eTB, iIndex, iData);
+                iAwal := i + 1;
+                iData := iData + 1;
+            end;
+        end;
+        iIndex := iIndex + 1;
+    end;
+    close(tBerkas);
+    bacaTransaksiBelanja := eTB;
+end;
+
+procedure load(var eSB    : StokBaju;
+               var eEP    : EkspedisiPengiriman;
+               var eKB    : KeranjangBelanja;
+               var eTB    : TransaksiBelanja;
+               sNamaFile1 : string;
+               sNamaFile2 : string;
+               sNamaFile3 : string;
+               sNamaFile4 : string);
+
+// Algoritma
+begin
+    eSB := bacaStokBaju(sNamaFile1);
+    eEP := bacaEkspedisiPengiriman(sNamaFile2);
+    eKB := bacaKeranjangBelanja(sNamaFile3);
+    eTB := bacaTransaksiBelanja(sNamaFile4);
+end;
+               
 
 //----------------------------------------------
 // F2
@@ -188,14 +453,75 @@ end;
   I.S. : 
   F.S. :
 }
+
 procedure searchClothesByKeyword(eSB : StokBaju);
+//Kamus Lokal
+
+Var
+keyword : string; //variabel untuk menampung input user
+cek : boolean;    //validasi ketika sebuah keyword telah ditemukan
+
 // Algoritma
+
 begin
-{
+    writeln('==================');
+    writeln('- Search Clothes -');
+    writeln('==================');
+    writeln();
+    write('Masukkan kata kunci : ');
+    readln(keyword);
 
-    tulis kode disini ...
+    cek := FALSE;
+    a:= 0;
+    for i:=1 to coKapasitasMaksimum do
+    begin
+        if keyword = eSB[i].sNamaBaju then
+        begin
+            writeln();
+            a:= a+1;
+            writeln(a, '. ', eSB[i].sNamaBaju);
+            writeln('Kategori Baju : ', eSB[i].sKategoriBaju);
+            writeln('Bahan Baju : ', eSB[i].sBahanBaju);
+            writeln('Warna : ', eSB[i].sWarnaBaju);
+            writeln('S: ', eSB[i].iKetersediaanUkuranS, ' M: ', eSB[i].iKetersediaanUkuranM, ' L: ', eSB[i].iKetersediaanUkuranL, ' XL: ', eSB[i].iKetersediaanUkuranXL);
+            writeln('Rp. ', eSB[i].iHarga);
+            writeln('Banyak dibeli : ', eSB[i].iJumlahPembelian);
+            cek := true;
+        end
+        else if keyword = eSB[i].sKategoriBaju then
+        begin
+            writeln();
+            a:= a+1;
+            writeln(a, '. ', eSB[i].sKategoriBaju);
+            writeln('Nama Baju : ', eSB[i].sNamaBaju);
+            writeln('Bahan Baju : ', eSB[i].sBahanBaju);
+            writeln('Warna : ', eSB[i].sWarnaBaju);
+            writeln('S: ', eSB[i].iKetersediaanUkuranS, ' M: ', eSB[i].iKetersediaanUkuranM, ' L: ', eSB[i].iKetersediaanUkuranL, ' XL: ', eSB[i].iKetersediaanUkuranXL);
+            writeln('Rp. ', eSB[i].iHarga);
+            writeln('Banyak dibeli : ', eSB[i].iJumlahPembelian);
+            cek := true;
+        end
+        else if keyword = eSB[i].sWarnaBaju then
+        begin
+            writeln();
+            a:= a+1;
+            writeln(a, '. ', eSB[i].sWarnaBaju);
+            writeln('Nama Baju : ', eSB[i].sNamaBaju);
+            writeln('Kategori Baju : ', eSB[i].sKategoriBaju);
+            writeln('Bahan Baju : ', eSB[i].sBahanBaju);
+            writeln('S: ', eSB[i].iKetersediaanUkuranS, ' M: ', eSB[i].iKetersediaanUkuranM, ' L: ', eSB[i].iKetersediaanUkuranL, ' XL: ', eSB[i].iKetersediaanUkuranXL);
+            writeln('Rp. ', eSB[i].iHarga);
+            writeln('Banyak dibeli : ', eSB[i].iJumlahPembelian);
+            cek := true;
+        end;
+    end;
 
-}
+//Pemberitahuan jika barang yang dicari tidak tersedia
+    if not(cek) then
+    begin
+        writeln('Barang Tidak Tersedia');
+    end;
+
 end;
 
 
@@ -372,14 +698,30 @@ end;
   F.S. :
 }
 procedure removeFromCart(var eKB : KeranjangBelanja);
+var
+    i : integer;
 // Algoritma
+
 begin
-{
-
-    tulis kode disini ...
-
-}
+  for i:=1 to Ncart do {Ncart ini sesuai dengan berapa banyak item yang sudah ada di cart, harus di sesuaikan dengan}
+  begin {yang bikin add to cart}
+    writeln('> Barang yang ada di keranjang belanja :');
+    writeln(i,'. ',eKB[i].sNamaBaju);
+    writeln('Warna :'eKB[i].sWarnaBaju,' ');
+    write('S: '.eKB[i].iJumlahBeliS,' ');
+    write('M: '.eKB[i].iJumlahBeliM,' ');
+    write('L: '.eKB[i].iJumlahBeliL,' ');
+    writeln('XL: '.eKB[i].iJumlahBeliXL,' ');
+    writeln(eKB[i].iHarga);
+    writeln;
+  end;
+  write('> Masukkan nomor barang yang akan dihapus : '); 
+  readln(i);
+     
+      
+  end;
 end;
+
 
 
 //----------------------------------------------
@@ -606,6 +948,10 @@ procedure exit(    eSB : StokBaju;
                    eEP : EkspedisiPengiriman;
                    eKB : KeranjangBelanja;
                    eTB : TransaksiBelanja;
+                   sNamaFile1   : string;
+                   sNamaFile2   : string;
+                   sNamaFile3   : string;
+                   sNamaFile4   : string;
                var bS  : boolean);
 // Algoritma
 begin
@@ -628,7 +974,11 @@ procedure bacaPerintah(var eSB      : StokBaju;
                        var eEP      : EkspedisiPengiriman;
                        var eKB      : KeranjangBelanja;
                        var eTB      : TransaksiBelanja;
-                       var bS : boolean);
+                       sNamaFile1   : string;
+                       sNamaFile2   : string;
+                       sNamaFile3   : string;
+                       sNamaFile4   : string;
+                       var bS       : boolean);
 // Deklarasi variabel lokal
 var
     sPerintah   : string;
@@ -637,7 +987,7 @@ begin
     write('> ');
     readln(sPerintah);
     case sPerintah of
-        'load'                      : load(eSB, eEP, eKB, eTB);
+        'load'                      : load(eSB, eEP, eKB, eTB, sNamaFile1, sNamaFile2, sNamaFile3, sNamaFile4);
         'showPopulars'              : showPopulars(eSB);
         'showDetailProduct'         : showDetailProduct(eSB);
         'searchClotheeSByKeyword'   : searchClothesByKeyword(eSB);
@@ -653,7 +1003,7 @@ begin
         'discountGrosir'            : discountGrosir(eKB);
         'showTransaction'           : showTransaction(eTB);
         'retur'                     : retur(eSB);
-        'exit'                      : exit(eSB, eEP, eKB, eTB, bS);
+        'exit'                      : exit(eSB, eEP, eKB, eTB, sNamaFile1, sNamaFile2, sNamaFile3, sNamaFile4, bS);
         else                          writeln('> Perintah salah');
     end;
 end;
@@ -680,7 +1030,15 @@ var
 begin
     bSelesai := FALSE;
     while not(bSelesai) do
-        bacaPerintah(eSB, eEP, eKB, eTB, bSelesai);
+        bacaPerintah(eSB, eEP, eKB, eTB, 'fStokBaju.txt', 'fEkspedisiPengiriman.txt', 'fKeranjangBelanja.txt', 'fTransaksiBelanja.txt', bSelesai);
+end;
+
+
+//----------------------------------------------
+// jika dibutuhkan anda dapat menggunakan prosedur ini, prosedur ini bisa di edit sesuka anda.
+procedure contoh;
+begin
+
 end;
 
 
