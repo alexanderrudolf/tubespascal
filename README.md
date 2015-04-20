@@ -9,13 +9,13 @@ Tugas Besar : Membuat Online Shop menggunakan Pascal
 + Rio
 
 # Petunjuk
-Program utama taruh di dalam berkas main.pas
-Jika ingin menguji coba program diatas, unduh semua berkas eksternal :
+Program utama adalah main.pas
+Jika ingin menguji coba program diatas, unduh semua berkas eksternal dan program utama :
 + fStokBaju.txt
 + fEkpedisiPengiriman.txt
 + fKeranjangBelanja.txt
 + fTransaksiBelanja.txt
-beserta main.pas
++ main.pas
 
 Compile menggunakan compiler free pascal (fpc)
 
