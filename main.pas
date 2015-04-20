@@ -442,13 +442,20 @@ begin
 end;
 
 
+
 //----------------------------------------------
 // F4
 // Mencari dan menampilkan daftar baju berdasarkan kata kunci dari pengguna.
 // Pencarian menggunakan kata kunci nama baju, kategori baju, dan warna baju
+
 {
-  Contoh i/o
+  ==================
+  - Search Clothes -
+  ==================
+  Masukkan kata kunci : putih
+
 }
+
 { 
   I.S. : 
   F.S. :
@@ -464,63 +471,63 @@ cek : boolean;    //validasi ketika sebuah keyword telah ditemukan
 // Algoritma
 
 begin
-    writeln('==================');
-    writeln('- Search Clothes -');
-    writeln('==================');
-    writeln();
-    write('Masukkan kata kunci : ');
-    readln(keyword);
+	writeln('==================');
+	writeln('- Search Clothes -');
+	writeln('==================');
+	writeln();
+	write('Masukkan kata kunci : ');
+	readln(keyword);
 
-    cek := FALSE;
-    a:= 0;
-    for i:=1 to coKapasitasMaksimum do
-    begin
-        if keyword = eSB[i].sNamaBaju then
-        begin
-            writeln();
-            a:= a+1;
-            writeln(a, '. ', eSB[i].sNamaBaju);
-            writeln('Kategori Baju : ', eSB[i].sKategoriBaju);
-            writeln('Bahan Baju : ', eSB[i].sBahanBaju);
-            writeln('Warna : ', eSB[i].sWarnaBaju);
-            writeln('S: ', eSB[i].iKetersediaanUkuranS, ' M: ', eSB[i].iKetersediaanUkuranM, ' L: ', eSB[i].iKetersediaanUkuranL, ' XL: ', eSB[i].iKetersediaanUkuranXL);
-            writeln('Rp. ', eSB[i].iHarga);
-            writeln('Banyak dibeli : ', eSB[i].iJumlahPembelian);
-            cek := true;
-        end
-        else if keyword = eSB[i].sKategoriBaju then
-        begin
-            writeln();
-            a:= a+1;
-            writeln(a, '. ', eSB[i].sKategoriBaju);
-            writeln('Nama Baju : ', eSB[i].sNamaBaju);
-            writeln('Bahan Baju : ', eSB[i].sBahanBaju);
-            writeln('Warna : ', eSB[i].sWarnaBaju);
-            writeln('S: ', eSB[i].iKetersediaanUkuranS, ' M: ', eSB[i].iKetersediaanUkuranM, ' L: ', eSB[i].iKetersediaanUkuranL, ' XL: ', eSB[i].iKetersediaanUkuranXL);
-            writeln('Rp. ', eSB[i].iHarga);
-            writeln('Banyak dibeli : ', eSB[i].iJumlahPembelian);
-            cek := true;
-        end
-        else if keyword = eSB[i].sWarnaBaju then
-        begin
-            writeln();
-            a:= a+1;
-            writeln(a, '. ', eSB[i].sWarnaBaju);
-            writeln('Nama Baju : ', eSB[i].sNamaBaju);
-            writeln('Kategori Baju : ', eSB[i].sKategoriBaju);
-            writeln('Bahan Baju : ', eSB[i].sBahanBaju);
-            writeln('S: ', eSB[i].iKetersediaanUkuranS, ' M: ', eSB[i].iKetersediaanUkuranM, ' L: ', eSB[i].iKetersediaanUkuranL, ' XL: ', eSB[i].iKetersediaanUkuranXL);
-            writeln('Rp. ', eSB[i].iHarga);
-            writeln('Banyak dibeli : ', eSB[i].iJumlahPembelian);
-            cek := true;
-        end;
-    end;
+	cek := FALSE;
+	a:= 0;
+	for i:=1 to coKapasitasMaksimum do
+	begin
+		if keyword = eSB[i].sNamaBaju then
+		begin
+			writeln();
+			a:= a+1;
+			writeln(a, '. ', eSB[i].sNamaBaju);
+			writeln('Kategori Baju : ', eSB[i].sKategoriBaju);
+			writeln('Bahan Baju : ', eSB[i].sBahanBaju);
+			writeln('Warna : ', eSB[i].sWarnaBaju);
+			writeln('S: ', eSB[i].iKetersediaanUkuranS, ' M: ', eSB[i].iKetersediaanUkuranM, ' L: ', eSB[i].iKetersediaanUkuranL, ' XL: ', eSB[i].iKetersediaanUkuranXL);
+			writeln('Rp. ', eSB[i].iHarga);
+			writeln('Banyak dibeli : ', eSB[i].iJumlahPembelian);
+			cek := true;
+		end
+		else if keyword = eSB[i].sKategoriBaju then
+		begin
+			writeln();
+			a:= a+1;
+			writeln(a, '. ', eSB[i].sKategoriBaju);
+			writeln('Nama Baju : ', eSB[i].sNamaBaju);
+			writeln('Bahan Baju : ', eSB[i].sBahanBaju);
+			writeln('Warna : ', eSB[i].sWarnaBaju);
+			writeln('S: ', eSB[i].iKetersediaanUkuranS, ' M: ', eSB[i].iKetersediaanUkuranM, ' L: ', eSB[i].iKetersediaanUkuranL, ' XL: ', eSB[i].iKetersediaanUkuranXL);
+			writeln('Rp. ', eSB[i].iHarga);
+			writeln('Banyak dibeli : ', eSB[i].iJumlahPembelian);
+			cek := true;
+		end
+		else if keyword = eSB[i].sWarnaBaju then
+		begin
+			writeln();
+			a:= a+1;
+			writeln(a, '. ', eSB[i].sWarnaBaju);
+			writeln('Nama Baju : ', eSB[i].sNamaBaju);
+			writeln('Kategori Baju : ', eSB[i].sKategoriBaju);
+			writeln('Bahan Baju : ', eSB[i].sBahanBaju);
+			writeln('S: ', eSB[i].iKetersediaanUkuranS, ' M: ', eSB[i].iKetersediaanUkuranM, ' L: ', eSB[i].iKetersediaanUkuranL, ' XL: ', eSB[i].iKetersediaanUkuranXL);
+			writeln('Rp. ', eSB[i].iHarga);
+			writeln('Banyak dibeli : ', eSB[i].iJumlahPembelian);
+			cek := true;
+		end;
+	end;
 
 //Pemberitahuan jika barang yang dicari tidak tersedia
-    if not(cek) then
-    begin
-        writeln('Barang Tidak Tersedia');
-    end;
+	if not(cek) then
+	begin
+		writeln('Barang Tidak Tersedia');
+	end;
 
 end;
 
@@ -536,13 +543,67 @@ end;
   F.S. :
 }
 procedure sortPrice(eSB : StokBaju);
+//Kamus Lokal
+
+type
+simpan = array [1..coKapasitasMaksimum] of integer;
+
+var
+i,a	 : integer;   //indeks untuk transversal tabel
+pass : integer;   //tahapan pengurutan
+temp : integer;   //memorisasi harga untuk pertukaran
+imax : integer;   //indeks dimana array bernilai maksimum
+eSimpan : simpan; //penyimpanan dan penampungan harga yang sudah terurut maupun yang belum terurut
 // Algoritma
+
 begin
-{
 
-    tulis kode disini ...
+	writeln('==================');
+	writeln('  - Sort Price -');
+	writeln('==================');
+	writeln();
 
-}
+	//Menyimpan semua harga dari daftar baju ke sebuah variabel penampung sementara
+	for i:=1 to coKapasitasMaksimum do
+	begin
+		eSimpan[i] := eSB[i].iHarga;
+	end;
+
+	//Mengurutkan harga baju dan menyimpannya dalam harga
+	for pass := 1 to (coKapasitasMaksimum-1) do
+    begin
+    	imax := pass;
+    	for i:= pass +1 to coKapasitasMaksimum do
+    	begin
+    		if (eSimpan[imax] < eSimpan[i]) then
+    		begin
+    			imax := i;
+    			temp := eSimpan[imax];
+    			eSimpan[imax] := eSimpan[pass];
+    			eSimpan[pass] := temp;
+    		end;
+    	end;
+    end;
+
+//Menampilkan hasil urutan berdasarkan Harga paling mahal
+	for i:=1 to coKapasitasMaksimum do
+	begin
+		for a:=1 to coKapasitasMaksimum do
+		begin
+			if eSimpan[i] = eSB[a].iHarga then
+			begin
+				writeln();
+				writeln(i, '. ','Rp. ', eSB[a].iHarga);
+				writeln('Nama Baju : ', eSB[a].sNamaBaju);
+				writeln('Kategori Baju : ', eSB[a].sKategoriBaju);
+				writeln('Bahan Baju : ', eSB[a].sBahanBaju);
+				writeln('Warna : ', eSB[a].sWarnaBaju);
+				writeln('S: ', eSB[a].iKetersediaanUkuranS, ' M: ', eSB[a].iKetersediaanUkuranM, ' L: ', eSB[a].iKetersediaanUkuranL, ' XL: ', eSB[a].iKetersediaanUkuranXL);
+				writeln('Banyak dibeli : ', eSB[a].iJumlahPembelian);
+			end;
+		end;
+	end;
+	
 end;
 
 
@@ -578,14 +639,61 @@ end;
   F.S. :
 }
 procedure filterClothes(eSB : StokBaju);
+//Kamus Lokal
+
+var
+gender,kategori,ukuran,warna: string; //variabel untuk menampung input user
+i,nomor : integer;					
+cek : boolean;
+
 // Algoritma
+
 begin
 {
-
+jika ada tulisan semua maka nilainya itu pasti true sisanya seacrh lagi
     tulis kode disini ...
-
 }
+	writeln('==================');
+	writeln('- Filter Clothes -');
+	writeln('==================');
+	writeln();
+	write('Gender   : ');
+	readln(gender);
+	write('Kategori : ');
+	readln(kategori);
+	write('Ukuran   : ');
+	readln(ukuran);
+	write('Warna    : ');
+	readln(warna);
+	writeln();
+
+	cek := FALSE;
+	nomor := 1;
+	for i:=1 to coKapasitasMaksimum do
+	begin
+		if ((gender = eSb[i].sGenderPemakai) or (gender = 'semua')) and ((kategori = eSB[i].sKategoriBaju) or (kategori = 'semua')) and ((warna = eSB[i].sWarnaBaju) or (warna = 'semua')) 
+		and (((ukuran = 'S') and (eSB[i].iKetersediaanUkuranS > 0)) or ((ukuran = 'M') and (eSB[i].iKetersediaanUkuranM > 0)) or ((ukuran = 'L') and (eSB[i].iKetersediaanUkuranL > 0)) or ((ukuran = 'XL') and (eSB[i].iKetersediaanUkuranXL > 0)) or (ukuran = 'semua')) then
+		begin
+			writeln();
+			writeln(nomor, '. ');
+			writeln('Nama Baju : ', eSB[i].sNamaBaju);
+			writeln('Kategori Baju : ', eSB[i].sKategoriBaju);
+			writeln('Bahan Baju : ', eSB[i].sBahanBaju);
+			writeln('Warna : ', eSB[i].sWarnaBaju);
+			writeln('Rp. ',eSB[i].iHarga);
+			writeln('S: ', eSB[i].iKetersediaanUkuranS, ' M: ', eSB[i].iKetersediaanUkuranM, ' L: ', eSB[i].iKetersediaanUkuranL, ' XL: ', eSB[i].iKetersediaanUkuranXL);
+			writeln('Banyak dibeli : ', eSB[i].iJumlahPembelian);
+			nomor := nomor+1;
+			cek := true;
+		end;
+	end;
+
+	if not(cek) then
+	begin
+		writeln('Barang tidak ditemukan');
+	end;
 end;
+
 
 
 //----------------------------------------------
