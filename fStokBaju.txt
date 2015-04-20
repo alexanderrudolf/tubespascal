@@ -1,0 +1,2 @@
+Blouse Etnik Sasmira | Blouse | Perempuan | Biru | 0.1 | Spandex | 3000 | 10 | 15 | 20 | 10 | 100 | 10
+Jas Hujan | Jas | Laki-laki | Hitam | 0.4 | Nike | 5700 | 5 | 25 | 30 | 10 | 99 | 15
