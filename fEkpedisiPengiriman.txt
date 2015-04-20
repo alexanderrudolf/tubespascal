@@ -1,0 +1,2 @@
+JNE | YES | Surabaya | 9000 | 1
+POS Indonesia | Regular | Jakarta | 4000 | 3
